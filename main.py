@@ -112,7 +112,7 @@ def descargar_archivos(page, context, identificador):
 
 
 def leer_catastral():
-    df = pd.read_excel("Municipalidad_2026.xlsx")
+    df = pd.read_excel("Municipalidad_Demo.xlsx")
     numeros = df["Municipal"].dropna().astype(str).tolist()
     
     designaciones = []
