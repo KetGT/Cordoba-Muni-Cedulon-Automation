@@ -27,3 +27,46 @@ Las librerías necesarias para ejecutar este proyecto son:
    ```bash
    git clone [https://github.com/KetGT/Cordoba-Muni-Cedulon-Automation.git](https://github.com/KetGT/Cordoba-Muni-Cedulon-Automation.git)
    cd Cordoba-Muni-Cedulon-Automation
+
+2. **Instalar las dependencias de Python:**
+   ```bash
+   pip install playwright pandas openpyxl PyPDF2
+
+3. **Instalar los navegadores de Playwright:**
+Nota: El script intenta hacer esto automáticamente en su primera ejecución, pero puedes forzarlo manualmente con:
+   ```bash
+   playwright install chromium
+
+
+## 📁 Estructura del Archivo Excel de Entrada
+
+El script requiere un archivo en el directorio raíz llamado Municipalidad_Demo.xlsx. El programa extrae los datos específicamente de la columna llamada Municipal.La tabla debe tener un formato similar a este:
+
+## N° Locador Locatario Domicilio Municipal 
+## 1 Nombre_Dueño Nombre_Locatario_1 Domicilio_1 01-11-111-111-11111-1
+## 2 Nombre_Dueño_2 Nombre_Locatario_2 Domicilio_2 02-22-222-222-22222-2
+## 3 Nombre_Dueño_3 Nombre_Locatario_3 Domicilio_3 03-33-333-333-33333-3
+
+El script limpia automáticamente los datos de la columna Municipal, eliminando los guiones (-) y descartando el último dígito verificador para adaptarlo al formato de búsqueda requerido por el portal web.
+
+
+## 💻 Uso
+Una vez configurado el entorno y preparado el archivo Excel, simplemente ejecuta el script principal:
+
+   ```bash
+   python main.py
+```
+
+## Flujo de ejecución:
+
+1.El script limpiará el directorio /descargas si existen ejecuciones previas.
+
+2.Abrirá una instancia de Chromium visible para poder monitorear el proceso.
+
+3.Iterará sobre cada nomenclatura, procesará la descarga y esperará unos segundos (pausa de seguridad).
+
+4.Al finalizar, encontrarás todos los PDFs individuales en la carpeta /descargas y un archivo unificado llamado todos_unidos.pdf.
+
+
+## ⚠️ Consideraciones y Responsabilidad
+Este script fue creado con fines educativos y de optimización de flujos de trabajo administrativos. El uso de pausas y slow_mo está diseñado explícitamente para no sobrecargar los servidores gubernamentales. Se recomienda ejecutar las descargas masivas en horarios de bajo tráfico web.
